@@ -1,17 +1,23 @@
 .formContainer {
   display: flex;
   justify-content: center;
+  margin: 2em;
 }
 .form {
   color: white;
   font-size: var(--MobileFontSize);
-  margin-top: 10px;
-  height: 15vh;
+  height: 20vh;
   width: 80vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   border: 0.1em solid rgb(77, 77, 77);
-  border-radius: 0.2em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 15px #ccc;
+}
+
+.charMsg {
+  font-size: calc(var(--MobileFontSize) - 0.1rem);
+  color: chartreuse;
 }
