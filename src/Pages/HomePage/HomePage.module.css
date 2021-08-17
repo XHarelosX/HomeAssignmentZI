@@ -1,0 +1,16 @@
+.divContainer {
+  height: 30vh;
+  margin-top: 4rem;
+  color: white;
+  font-size: calc(var(--MobileFontSize) - 0.15rem);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+.login {
+  color: white;
+  text-decoration: underline;
+  margin-top: 4rem;
+  font-size: calc(var(--MobileFontSize) + 0.4rem);
+}

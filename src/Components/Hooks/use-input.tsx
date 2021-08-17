@@ -22,10 +22,7 @@ function inputStateReducer(initialInputState: State, action: Action): State {
 }
 
 const useInput = (validateValue: valitadeValue) => {
-  const [inputState, dispatch] = useReducer(
-    inputStateReducer,
-    initialInputState
-  );
+  const [inputState, dispatch] = useReducer( inputStateReducer, initialInputState );
 
   const valueIsValid = validateValue(inputState.value);
 
