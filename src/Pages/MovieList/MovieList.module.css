@@ -1,0 +1,18 @@
+.divUlContainer {
+  text-align: center;
+  color: aliceblue;
+}
+.divUlContainer p {
+  text-decoration: underline;
+  font-size: calc(var(--MobileFontSize) - 0.1rem);
+}
+
+.moviesUl {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
