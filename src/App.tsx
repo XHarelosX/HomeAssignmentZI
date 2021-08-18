@@ -1,26 +1,43 @@
 import LoginForm from "./Pages/LoginForm/LoginForm";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import MovieList from "./Pages/MovieList/MovieList";
-import Home from "./Pages/HomePage/HomePage";
-import Layout from "./Components/Layout/Layout";
+import HomePage from "./Pages/HomePage/HomePage";
+import LoginContext from "./store/login-context";
+import { useContext, useEffect } from "react";
+import Header from "./Components/Header/Header";
 
 function App() {
+  const loginCtx = useContext(LoginContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    const username = document.cookie.split("=")[1];
+
+    if (username) {
+      loginCtx.isLoggedIn = true;
+      loginCtx.login(username);
+      history.replace("/movielist");
+    }
+    console.log("no Username Found");
+  }, [loginCtx, history]);
+
   return (
-    <Layout>
+    <>
+      <Header isLoggedIn={loginCtx.isLoggedIn} />
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/home" component={HomePage} />
 
-        <Route path="/login" component={LoginForm} />
+        <Route exact path="/login" component={LoginForm} />
 
-        <Route path="/movielist">
-          <MovieList />
+        <Route exact path="/movielist">
+          <MovieList isLoggedIn={loginCtx.isLoggedIn} />
         </Route>
 
         <Route path="*">
-          <Redirect to="/" />
+          <Redirect to="/home" />
         </Route>
       </Switch>
-    </Layout>
+    </>
   );
 }
 

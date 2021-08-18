@@ -8,6 +8,13 @@ const LoginForm = () => {
   const history = useHistory();
   const authCtx = useContext(LoginContext);
 
+  const setCookieTimeInMinutes = (minutes: number) => {
+    let now = new Date();
+    now.setTime(now.getTime() + minutes * 60 * 1000);
+    const time = now.toUTCString();
+    return time;
+  };
+
   const ValidityCheck = (value: string) => {
     if (value.trim().length > 3) return true;
     return false;
@@ -26,10 +33,17 @@ const LoginForm = () => {
 
   const formSubmitedHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    authCtx.login(`${enteredName} - ${new Date().toISOString()}`);
+
+    const time = new Date().toISOString();
+
+    authCtx.login(`${enteredName} - ${time}`);
     authCtx.isLoggedIn = true;
-    localStorage.setItem("username", enteredName);
-    history.push("./movielist");
+
+    const expireCookieTime = setCookieTimeInMinutes(30);
+
+    document.cookie = `${enteredName}=${enteredName}; expires=${expireCookieTime}; path=/`;
+
+    history.replace("./movielist");
   };
 
   return (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 interface context {
   token: string;
-  isLoggedIn: Boolean;
+  isLoggedIn: boolean;
   login: (arg: string) => void;
   logout: () => void;
 }

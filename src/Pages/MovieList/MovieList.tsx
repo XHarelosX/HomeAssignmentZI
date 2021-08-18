@@ -1,53 +1,59 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import LoginContext from "../../store/login-context";
 import MovieItem from "./MovieItem/MovieItem";
 import styles from "./MovieList.module.css";
 import useFatchdata from "../../Components/Hooks/use-fetch";
 
-const MovieList = () => {
+interface Props {
+  isLoggedIn: boolean;
+}
+
+const MovieList = (props: Props) => {
   let history = useHistory();
-  const loginCtx = useContext(LoginContext);
   const [movies, setMovies] = useState<any[]>([]);
   const { isLoading, error, sendRequest: getMoviesRequest } = useFatchdata();
 
-  useEffect(() => {
-    if (loginCtx.isLoggedIn) {
-      const movieFound = (moviesObject: any) => {
-        try {  const foundMoviesSorted = moviesObject.results.sort((a: any, b: any) => a.episode_id - b.episode_id);
-          setMovies(foundMoviesSorted);
-        }
-        catch (err) {
-          console.error(err);
-        }
-      };
-      getMoviesRequest({ url: "http://swapi.dev/api/films/"}, movieFound);
+  const movieFound = (moviesObject: any) => {
+    try {
+      const foundMoviesSorted = moviesObject.results.sort(
+        (a: any, b: any) => a.episode_id - b.episode_id
+      );
+      setMovies(foundMoviesSorted);
+    } catch (err) {
+      console.error(err);
     }
-    else {
-      history.push("/");
-    }
-  }, [loginCtx.isLoggedIn, history, getMoviesRequest]);
-
+  };
 
   const displayMovies = () => {
     if (isLoading) {
-      return <li>Loading Movies...</li>
+      return <li>Loading Movies...</li>;
     }
     if (error) {
-      return <li>Falied to get movies...</li>
+      return <li>Falied to get movies...</li>;
     }
-   const sortedMovies = movies.map((movie) => <MovieItem key={movie.episode_id}>{movie.title}</MovieItem>)
-    return sortedMovies
-  }
-  const allMoveis = displayMovies()
+    const sortedMovies = movies.map((movie) => (
+      <MovieItem key={movie.episode_id}>{movie.title}</MovieItem>
+    ));
+    return sortedMovies;
+  };
+
+  useEffect(() => {
+    const username = document.cookie.split("=")[1];
+    if (username) {
+      if (props.isLoggedIn) {
+        getMoviesRequest({ url: "http://swapi.dev/api/films/" }, movieFound);
+      }
+    }
+    else history.replace("/home");
+  }, [props.isLoggedIn, history, getMoviesRequest]);
+
+  const allMoveis = displayMovies();
 
   return (
     <div className={styles.divUlContainer}>
       <p>Click on the movie more information.</p>
-      <ul className={styles.moviesUl}>
-        {allMoveis}
-  </ul>
-      </div>
+      <ul className={styles.moviesUl}>{allMoveis}</ul>
+    </div>
   );
 };
 
