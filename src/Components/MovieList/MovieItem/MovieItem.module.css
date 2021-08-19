@@ -1,11 +1,20 @@
 .movieLi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: calc(var(--MobileFontSize) - 0.1rem);
-  margin: 0.2em;
+  margin: 0.25em;
+  padding: 0 15px;
   text-align: center;
   list-style: none;
   color: white;
   border: 0.1em solid rgb(77, 77, 77);
   border-radius: 0.5em;
   box-shadow: 0 0 15px #ccc;
-  width: 80vw;
+  width: 70vw;
+  height: calc(var(--MobileFontSize) + 0.8rem);
+}
+
+.starIcon {
+  height: 25px;
 }

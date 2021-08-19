@@ -1,13 +1,18 @@
-
 interface Props {
   SelectedMovie: any;
 }
 
 const MovieInfoSection: React.FC<Props> = ({ SelectedMovie }) => {
-    
   return (
     <>
-      {SelectedMovie ? <section> {SelectedMovie.title}</section> : <p>Please Selecet Movie.</p>}
+      {SelectedMovie ? (
+        <section>
+          <div>{SelectedMovie.title}</div>
+          <div></div>
+        </section>
+      ) : (
+        <p>Please Selecet Movie.</p>
+      )}
     </>
   );
 };

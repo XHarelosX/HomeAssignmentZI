@@ -13,7 +13,13 @@ const MovieList: React.FC<Props> = ({ movies }) => {
 
   const selectMovieToDisplayHandler = (id?: any) => {
       const movieFoundById: any[] = movies.filter((movie) => movie.episode_id === id);
-    movieCtx.setSelectedMovieHandler({...movieFoundById[0]})
+      movieCtx.setSelectedMovieHandler({...movieFoundById[0]})
+  };
+
+  const addMovieToFavoriteHandler = (id: any) => {
+    const movieFoundById: any[] = movies.filter((movie) => movie.episode_id === id);
+    if ( movieCtx.favoritesMovies.includes(movieFoundById[0].title) ) return;
+      movieCtx.setFavoriteMoviesHandler(movieFoundById[0].title)
   };
 
   const displayMovies = () => {
@@ -21,7 +27,8 @@ const MovieList: React.FC<Props> = ({ movies }) => {
       <MovieItem
         key={movie.episode_id}
         id={movie.episode_id}
-        onClickFunc={selectMovieToDisplayHandler}
+        DisplayMovieInfoOnClick={selectMovieToDisplayHandler}
+        AddMovieToFavoritesOnClick={addMovieToFavoriteHandler}
       >
         {movie.title}
       </MovieItem>
