@@ -8,7 +8,7 @@ interface Props {
   isLoggedIn: boolean;
 }
 
-const MovieList = (props: Props) => {
+const MovieList: React.FC<Props> = (props: Props) => {
   let history = useHistory();
   const [movies, setMovies] = useState<any[]>([]);
   const { isLoading, error, sendRequest: getMoviesRequest } = useFatchdata();
@@ -43,8 +43,7 @@ const MovieList = (props: Props) => {
       if (props.isLoggedIn) {
         getMoviesRequest({ url: "http://swapi.dev/api/films/" }, movieFound);
       }
-    }
-    else history.replace("/home");
+    } else history.replace("/home");
   }, [props.isLoggedIn, history, getMoviesRequest]);
 
   const allMoveis = displayMovies();

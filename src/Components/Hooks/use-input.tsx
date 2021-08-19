@@ -25,6 +25,7 @@ const useInput = (validateValue: valitadeValue) => {
   const [inputState, dispatch] = useReducer( inputStateReducer, initialInputState );
 
   const valueIsValid = validateValue(inputState.value);
+  const hasError = !valueIsValid && inputState.isTouched;
 
   const valueChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: "INPUT", value: event.target.value });
@@ -37,6 +38,7 @@ const useInput = (validateValue: valitadeValue) => {
   return {
     value: inputState.value,
     isValid: valueIsValid,
+    hasError,
     valueChangeHandler,
     inputBlurHandler,
   };

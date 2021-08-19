@@ -21,3 +21,7 @@
   font-size: calc(var(--MobileFontSize) - 0.1rem);
   color: chartreuse;
 }
+
+.invalidInput {
+  border: 2px solid red;
+}

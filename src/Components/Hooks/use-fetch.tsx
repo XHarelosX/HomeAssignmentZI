@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+
 interface FetchProps {
   url: string;
   method?: "PUT" | "GET" | "DELETE" | "POST";
@@ -11,12 +12,12 @@ const useFatchdata = () => {
   const [error, setError] = useState<string | null>(null);
 
   const sendRequest = useCallback(
-    async (requestConfig: FetchProps, applyData: CallableFunction) => {
+    async (requestConfig: FetchProps, applyData: (arg: any) => void) => {
       setIsLoading(true);
       setError(null);
 
       try {
-        const response = await fetch(requestConfig.url, {
+        const response: Response = await fetch(requestConfig.url, {
           method: requestConfig.method ? requestConfig.method : "GET",
           headers: requestConfig.headers ? requestConfig.headers : {},
           body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
