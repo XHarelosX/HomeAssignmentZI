@@ -1,25 +1,14 @@
 import LoginForm from "./Pages/LoginForm/LoginForm";
-import { Switch, Route, Redirect, useHistory } from "react-router-dom";
-import MovieList from "./Pages/MovieList/MovieList";
+import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./Pages/HomePage/HomePage";
 import LoginContext from "./store/login-context";
-import { useContext, useEffect } from "react";
+import { MoviesContextProvider } from "./store/movies-context";
+import { useContext } from "react";
 import Header from "./Components/Header/Header";
+import UserPage from "./Pages/UserPage/UserPage";
 
 function App() {
   const loginCtx = useContext(LoginContext);
-  const history = useHistory();
-
-  useEffect(() => {
-    const username = document.cookie.split("=")[1];
-
-    if (username) {
-      loginCtx.isLoggedIn = true;
-      loginCtx.login(username);
-      history.replace("/movielist");
-    }
-    console.log("no Username Found");
-  }, [loginCtx, history]);
 
   return (
     <>
@@ -29,8 +18,10 @@ function App() {
 
         <Route exact path="/login" component={LoginForm} />
 
-        <Route exact path="/movielist">
-          <MovieList isLoggedIn={loginCtx.isLoggedIn} />
+        <Route exact path="/userpage">
+          <MoviesContextProvider>
+            <UserPage />
+          </MoviesContextProvider>
         </Route>
 
         <Route path="*">

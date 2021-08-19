@@ -10,7 +10,7 @@ interface context {
 const LoginContext = React.createContext<context>({
   token: "",
   isLoggedIn: false,
-  login: (token) => {},
+  login: () => {},
   logout: () => {},
 });
 

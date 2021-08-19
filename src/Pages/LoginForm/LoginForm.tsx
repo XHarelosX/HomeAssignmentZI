@@ -10,7 +10,7 @@ import styles from "./LoginForm.module.css";
 
 const LoginForm: React.FC = () => {
   const history = useHistory();
-  const authCtx = useContext(LoginContext);
+  const loginCtx = useContext(LoginContext);
 
   const {
     value: enteredName,
@@ -22,10 +22,10 @@ const LoginForm: React.FC = () => {
 
   const formSubmitedHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    authCtx.isLoggedIn = true;
+    loginCtx.isLoggedIn = true;
     const expireCookieTime = setCookieTimeInMinutes(30);
     document.cookie = `${enteredName}=${enteredName}; expires=${expireCookieTime}; path=/`;
-    history.replace("./movielist");
+    history.push("./movielist");
   };
 
   const msg =
