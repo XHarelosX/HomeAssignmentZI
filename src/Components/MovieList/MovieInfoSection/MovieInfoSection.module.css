@@ -1,0 +1,49 @@
+.divConteiner {
+  margin: 0 0 2rem 0;
+}
+
+.noSelectedMovieMsg {
+  text-align: center;
+  text-decoration: underline;
+  color: coral;
+}
+
+.movieTitle p {
+  margin: 0 2rem 1rem 2rem;
+  padding-bottom: 0.2rem;
+  font-size: calc(var(--MobileFontSize) + 0.4rem);
+  text-align: center;
+  text-decoration: underline;
+  color: rgb(255, 174, 0);
+  border: 1px solid;
+  border-radius: 0.5rem;
+}
+
+.informationLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: antiquewhite;
+  font-size: calc(var(--MobileFontSize) + 0.1rem);
+}
+
+.imgContainer {
+  width: auto;
+  height: 450px;
+}
+
+.movieDetails {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.spanCategory {
+  text-decoration: underline;
+}
+
+.openingText {
+  margin-top: 1rem;
+  text-align: center;
+}

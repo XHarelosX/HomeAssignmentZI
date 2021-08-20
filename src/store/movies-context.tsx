@@ -23,7 +23,7 @@ export const MoviesContextProvider: React.FC = ({ children }) => {
     setSelectedMovieToShow(movie);
   };
 
-  const setFavoriteMoviesToDisplay = (movie: any) => {
+  const setFavoriteMoviesToDisplay = (movie: any) => {    
     setFavoriteMovies((prevState: any) => { return [...prevState, movie] } );
   };
 

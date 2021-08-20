@@ -2,10 +2,7 @@ import { useContext } from "react";
 import { useHistory } from "react-router";
 import useInput from "../../Components/Hooks/use-input";
 import LoginContext from "../../store/login-context";
-import {
-  ValidityCheck,
-  setCookieTimeInMinutes,
-} from "../../Components/UtilitiesFunctions/Utilities";
+import { ValidityCheck, setCookieTimeInMinutes} from "../../UtilitiesFunctions/Utilities";
 import styles from "./LoginForm.module.css";
 
 const LoginForm: React.FC = () => {

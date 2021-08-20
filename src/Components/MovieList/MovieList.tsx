@@ -19,7 +19,7 @@ const MovieList: React.FC<Props> = ({ movies }) => {
   const addMovieToFavoriteHandler = (id: any) => {
     const movieFoundById: any[] = movies.filter((movie) => movie.episode_id === id);
     if ( movieCtx.favoritesMovies.includes(movieFoundById[0].title) ) return;
-      movieCtx.setFavoriteMoviesHandler(movieFoundById[0].title)
+      movieCtx.setFavoriteMoviesHandler(movieFoundById[0])
   };
 
   const displayMovies = () => {

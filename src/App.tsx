@@ -6,6 +6,7 @@ import { MoviesContextProvider } from "./store/movies-context";
 import { useContext } from "react";
 import Header from "./Components/Header/Header";
 import UserPage from "./Pages/UserPage/UserPage";
+import FavoriteMovies from "./Pages/FavoriteMovies/FavoriteMovies";
 
 function App() {
   const loginCtx = useContext(LoginContext);
@@ -17,6 +18,12 @@ function App() {
         <Route exact path="/home" component={HomePage} />
 
         <Route exact path="/login" component={LoginForm} />
+
+        <Route exact path="/favorites">
+          <MoviesContextProvider>
+            <FavoriteMovies />
+          </MoviesContextProvider>
+        </Route>
 
         <Route exact path="/userpage">
           <MoviesContextProvider>

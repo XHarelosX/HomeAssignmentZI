@@ -4,10 +4,10 @@ import useFatchdata from "../../Components/Hooks/use-fetch";
 import MovieInfoSection from "../../Components/MovieList/MovieInfoSection/MovieInfoSection";
 import MovieList from "../../Components/MovieList/MovieList";
 import moviesContext from "../../store/movies-context";
+import styles from './UserPage.module.css'
 
-interface Props {}
 
-const UserPage: React.FC<Props> = (props: Props) => {
+const UserPage: React.FC = () => {
   let history = useHistory();
 
   const movieCtx = useContext(moviesContext);
@@ -27,19 +27,19 @@ const UserPage: React.FC<Props> = (props: Props) => {
   };
 
   const allMovies = () => {
-    if (isLoading) return <li>Loading Movies...</li>;
-    if (error) return <li>Falied to get movies...</li>;
+    if (isLoading) return <li className={styles.liMsg}>Loading Movies...</li>;
+    if (error) return <li className={styles.liMsg}>Falied to get movies...</li>;
     return <MovieList movies={movies} />;
   };
 
+  const moviesToRender = allMovies();
+  
   useEffect(() => {
     const username = document.cookie.split("=")[1];
     if (username) {
       getMoviesRequest({ url: "http://swapi.dev/api/films/" }, movieFound);
     } else history.replace("/home");
   }, [history, getMoviesRequest]);
-
-  const moviesToRender = allMovies();
 
   return (
     <div>

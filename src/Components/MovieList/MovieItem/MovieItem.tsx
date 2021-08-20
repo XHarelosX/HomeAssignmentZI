@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import SvgStar from "../../Svg/StarIcon";
 import styles from "./MovieItem.module.css";
-import moviesContext from "../../../store/movies-context";
+import LoginContext from "../../../store/login-context";
 
 interface Props {
   DisplayMovieInfoOnClick: (id: any) => void;
@@ -11,7 +11,8 @@ interface Props {
 }
 
 const MovieItem: React.FC<Props> = ({ DisplayMovieInfoOnClick, AddMovieToFavoritesOnClick, children, id }) => {
-  const movieCtx = useContext(moviesContext);
+  const loginCtx = useContext(LoginContext);
+  console.log(loginCtx.token)
 
   return (
     <li className={styles.movieLi} >
