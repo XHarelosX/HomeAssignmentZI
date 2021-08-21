@@ -19,10 +19,10 @@ const LoginForm: React.FC = () => {
 
   const formSubmitedHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    loginCtx.isLoggedIn = true;
+    loginCtx.login(enteredName)
     const expireCookieTime = setCookieTimeInMinutes(30);
     document.cookie = `${enteredName}=${enteredName}; expires=${expireCookieTime}; path=/`;
-    history.push("./movielist");
+    history.push("./userpage");
   };
 
   const msg =

@@ -4,19 +4,20 @@ import HomePage from "./Pages/HomePage/HomePage";
 import Header from "./Components/Header/Header";
 import UserPage from "./Pages/UserPage/UserPage";
 import FavoriteMovies from "./Pages/FavoriteMoviesPage/FavoriteMovies";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import { MoviesContextProvider } from "./store/movies-context";
 import LoginContext from "./store/login-context";
 
 function App() {
   const loginCtx = useContext(LoginContext);
+  const history = useHistory();
 
   const logoutBtnHandler = () => {
     document.cookie =
       document.cookie.split("=")[0] + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    localStorage.removeItem(`favoriteMovies=${loginCtx.token}`)
-    loginCtx.isLoggedIn = false;    
-    window.location.reload();
+    localStorage.removeItem(`favoriteMovies=${loginCtx.token}`);
+    loginCtx.logout();
+    history.replace("/home");
   };
 
   useEffect(() => {
@@ -28,10 +29,7 @@ function App() {
 
   return (
     <>
-      <Header
-        isLoggedIn={loginCtx.isLoggedIn}
-        logoutBtnHandler={logoutBtnHandler}
-      />
+      <Header logoutBtnHandler={logoutBtnHandler} />
       <Switch>
         <Route exact path="/home" component={HomePage} />
 
