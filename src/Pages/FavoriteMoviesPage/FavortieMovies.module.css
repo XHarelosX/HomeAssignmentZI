@@ -37,6 +37,8 @@
 }
 
 .noMovieFoundMsg {
+  text-align: center;
+  width: 60vw;
   color: chocolate;
   text-decoration: underline;
 }

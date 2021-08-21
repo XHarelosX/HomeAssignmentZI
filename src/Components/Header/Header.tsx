@@ -1,13 +1,11 @@
 import styles from "./Header.module.css";
 
-
 interface Props {
   isLoggedIn: boolean;
-  logoutBtnHandler: () => void
+  logoutBtnHandler: () => void;
 }
 
 const Header: React.FC<Props> = ({ isLoggedIn, logoutBtnHandler }: Props) => {
-
   return (
     <header className={styles.header}>
       <div>Star Wars UI API</div>

@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
-import LoginForm from "./Pages/LoginForm/LoginForm";
+import LoginForm from "./Pages/LoginFormPage/LoginForm";
 import HomePage from "./Pages/HomePage/HomePage";
 import Header from "./Components/Header/Header";
 import UserPage from "./Pages/UserPage/UserPage";
-import FavoriteMovies from "./Pages/FavoriteMovies/FavoriteMovies";
+import FavoriteMovies from "./Pages/FavoriteMoviesPage/FavoriteMovies";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { MoviesContextProvider } from "./store/movies-context";
 import LoginContext from "./store/login-context";

@@ -8,7 +8,9 @@ const FavoriteMovies: React.FC = () => {
   const movies = movieCtx.favoritesMovies;
 
   const contentToDisplay = !movies ? (
-    <p className={styles.noMovieFoundMsg}>No Movies Found</p>
+    <p className={styles.noMovieFoundMsg}>
+      Click on the yellow star in the movile list to add movies
+    </p>
   ) : (
     movies.map((movie) => {
       return (
@@ -32,7 +34,12 @@ const FavoriteMovies: React.FC = () => {
         <Link to="/userpage" className={styles.link}>
           Movie list page
         </Link>
-      <button className={styles.clearBtn} onClick={movieCtx.clearFavoriteMovies}>Clear Favorite</button>
+        <button
+          className={styles.clearBtn}
+          onClick={movieCtx.clearFavoriteMovies}
+        >
+          Clear Favorite
+        </button>
       </div>
       <ul className={styles.moviesUl}>{contentToDisplay}</ul>
     </div>
