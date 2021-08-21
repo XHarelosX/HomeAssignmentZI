@@ -60,10 +60,6 @@
     font-size: calc(var(--MediumFontSize) - 0.2rem);
   }
 
-  .informationLayout {
-    flex-direction: row;
-    width: 80%;
-  }
   .movieDetails {
     margin-left: 1rem;
     font-size: calc(var(--MediumFontSize) - 0.45rem);
@@ -80,5 +76,34 @@
   }
   .openingText {
     font-size: calc(var(--MediumFontSize) - 0.2rem);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .informationLayout {
+    flex-direction: column;
+    width: 40%;
+  }
+
+  .openingText {
+    margin: 0;
+  }
+
+  .section {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .divImgAndTitle {
+    width: 40%;
+  }
+  .openingText {
+    font-size: var(--BigFontSize);
+  }
+  .movieDetails {
+    font-size: calc(var(--BigFontSize) - 0.45rem);
+  }
+  .imgContainer {
+    width: 70%;
+    height: auto;
   }
 }

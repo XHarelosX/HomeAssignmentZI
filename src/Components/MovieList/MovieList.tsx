@@ -8,21 +8,24 @@ interface Props {
 }
 
 const MovieList: React.FC<Props> = ({ movies }) => {
-  
   const movieCtx = useContext(moviesContext);
 
   const selectMovieToDisplayHandler = (id: any) => {
-      const movieFoundById: any[] = movies.filter((movie) => movie.episode_id === id);
-      movieCtx.setSelectedMovieHandler({...movieFoundById[0]})
+    const movieFoundById: any[] = movies.filter(
+      (movie) => movie.episode_id === id
+    );
+    movieCtx.setSelectedMovieHandler({ ...movieFoundById[0] });
   };
 
   const addMovieToFavoriteHandler = (id: any) => {
-    const movieFoundById: any[] = movies.filter((movie) => movie.episode_id === id);
-    
-    if (movieCtx.favoritesMovies) {      
-      if ( movieCtx.favoritesMovies.includes(movieFoundById[0].title) ) return;
+    const movieFoundById: any[] = movies.filter(
+      (movie) => movie.episode_id === id
+    );
+
+    if (movieCtx.favoritesMovies) {
+      if (movieCtx.favoritesMovies.includes(movieFoundById[0].title)) return;
     }
-      movieCtx.setFavoriteMoviesHandler(movieFoundById[0])
+    movieCtx.setFavoriteMoviesHandler(movieFoundById[0]);
   };
 
   const displayMovies = () => {
@@ -30,6 +33,7 @@ const MovieList: React.FC<Props> = ({ movies }) => {
       <MovieItem
         key={movie.episode_id}
         id={movie.episode_id}
+        img={`${process.env.PUBLIC_URL}/Images/StarWarsEpisode${movie.episode_id}.jpg`}
         DisplayMovieInfoOnClick={selectMovieToDisplayHandler}
         AddMovieToFavoritesOnClick={addMovieToFavoriteHandler}
       >
@@ -40,12 +44,11 @@ const MovieList: React.FC<Props> = ({ movies }) => {
   };
   const allMoveis = displayMovies();
 
-  
   useEffect(() => {
-    movieCtx.setFavoriteMoviesFromLocalStorage()  
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-  
+    movieCtx.setFavoriteMoviesFromLocalStorage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className={styles.divUlContainer}>
       <p>Click on the movie more information.</p>

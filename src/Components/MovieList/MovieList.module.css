@@ -29,3 +29,19 @@ li {
     font-size: calc(var(--MediumFontSize) - 0.2rem);
   }
 }
+
+@media screen and (min-width: 1000px) {
+  .moviesUl {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 95vw;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .moviesUl {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+}

@@ -7,3 +7,9 @@
     width: 40px;
   }
 }
+
+@media screen and (min-width: 1000px) {
+  .starIcon {
+    width: 25px;
+  }
+}

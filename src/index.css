@@ -1,6 +1,7 @@
 :root {
   --MobileFontSize: 1.2rem;
   --MediumFontSize: 1.8rem;
+  --BigFontSize: 2.2rem;
 }
 body {
   margin: 0;
