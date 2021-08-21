@@ -19,7 +19,6 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     const username = document.cookie.split("=")[1];
     if (username) {
-      loginCtx.isLoggedIn = true;
       loginCtx.login(username);
       history.push("/userpage");
     }
