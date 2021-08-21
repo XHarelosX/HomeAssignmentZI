@@ -12,7 +12,7 @@ const FavoriteMovies: React.FC = () => {
   ) : (
     movies.map((movie) => {
       return (
-        <li key={movie.movieId}>
+        <li key={movie.movieId} className={styles.li}>
           <div className={styles.title}>{movie.movieTitle}</div>
           <div>
             <img
@@ -28,10 +28,11 @@ const FavoriteMovies: React.FC = () => {
 
   return (
     <div>
-      <div className={styles.divLink}>
+      <div className={styles.divConteiner}>
         <Link to="/userpage" className={styles.link}>
           Movie list page
         </Link>
+      <button onClick={movieCtx.clearFavoriteMovies}>Clear Favorite</button>
       </div>
       <ul className={styles.moviesUl}>{contentToDisplay}</ul>
     </div>

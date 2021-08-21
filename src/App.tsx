@@ -1,15 +1,23 @@
-import LoginForm from "./Pages/LoginForm/LoginForm";
-import { Switch, Route, Redirect } from "react-router-dom";
-import HomePage from "./Pages/HomePage/HomePage";
-import LoginContext from "./store/login-context";
-import { MoviesContextProvider } from "./store/movies-context";
 import { useContext, useEffect } from "react";
+import LoginForm from "./Pages/LoginForm/LoginForm";
+import HomePage from "./Pages/HomePage/HomePage";
 import Header from "./Components/Header/Header";
 import UserPage from "./Pages/UserPage/UserPage";
 import FavoriteMovies from "./Pages/FavoriteMovies/FavoriteMovies";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { MoviesContextProvider } from "./store/movies-context";
+import LoginContext from "./store/login-context";
 
 function App() {
   const loginCtx = useContext(LoginContext);
+
+  const logoutBtnHandler = () => {
+    document.cookie =
+      document.cookie.split("=")[0] + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    localStorage.removeItem(`favoriteMovies=${loginCtx.token}`)
+    loginCtx.isLoggedIn = false;    
+    window.location.reload();
+  };
 
   useEffect(() => {
     const username = document.cookie.split("=")[1];
@@ -20,12 +28,15 @@ function App() {
 
   return (
     <>
-      <Header isLoggedIn={loginCtx.isLoggedIn} />
+      <Header
+        isLoggedIn={loginCtx.isLoggedIn}
+        logoutBtnHandler={logoutBtnHandler}
+      />
       <Switch>
         <Route exact path="/home" component={HomePage} />
 
         <Route exact path="/login" component={LoginForm} />
-        
+
         {loginCtx.isLoggedIn ? (
           <MoviesContextProvider>
             <Route exact path="/favorites">

@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import LoginContext from "../store/login-context";
 // -------------------------------------- Context Store-------------------------------------- //
 interface Context {
   selectedMovieToShow: any;
   favoritesMovies: any[] | null;
   setSelectedMovieHandler: (arg: any) => void;
   setFavoriteMoviesHandler: (arg: any) => void;
-  setFavoriteMoviesFromLocalStorage: () => void,
+  setFavoriteMoviesFromLocalStorage: () => void;
+  clearFavoriteMovies: () => void;
 }
 
 interface MovieObj {
@@ -21,12 +23,14 @@ const moviesContext = React.createContext<Context>({
   selectedMovieToShow: null,
   favoritesMovies: [],
   setSelectedMovieHandler: () => {},
-  setFavoriteMoviesHandler: () => { },
-  setFavoriteMoviesFromLocalStorage: () => { },
+  setFavoriteMoviesHandler: () => {},
+  setFavoriteMoviesFromLocalStorage: () => {},
+  clearFavoriteMovies: () => {},
 });
 
 // -------------------------------------- Context Provider Component-------------------------------------- //
 export const MoviesContextProvider: React.FC = ({ children }) => {
+  const loginCtx = useContext(LoginContext);
   const [selectedMovieToShow, setSelectedMovieToShow] = useState<any>(null);
   const [favoritesMovies, setFavoriteMovies] = useState<any[] | null>(null);
 
@@ -35,10 +39,11 @@ export const MoviesContextProvider: React.FC = ({ children }) => {
   };
 
   const setFavoriteMoviesState = (movieDetails: MovieObj) => {
-    
     if (favoritesMovies) {
-      const isMovieInFavorites: MovieObj | undefined = favoritesMovies.find((item) => item.movieId === movieDetails.episode_id);
-      if (isMovieInFavorites)  return console.log("Already in Favorites");
+      const isMovieInFavorites: MovieObj | undefined = favoritesMovies.find(
+        (item) => item.movieId === movieDetails.episode_id
+      );
+      if (isMovieInFavorites) return console.log("Already in Favorites");
     }
 
     const shortMovieInfo = {
@@ -57,30 +62,40 @@ export const MoviesContextProvider: React.FC = ({ children }) => {
   };
 
   const setFavoriteMoviesFromLocalStorage = () => {
-    const pushFavoritesMoviesToContext: string | null =
-    localStorage.getItem("favoriteMovies");
+    const pushFavoritesMoviesToContext: string | null = localStorage.getItem(
+      `favoriteMovies=${loginCtx.token}`
+    );
     if (pushFavoritesMoviesToContext) {
       const moviesObj = JSON.parse(pushFavoritesMoviesToContext);
       const moviesArr = Object.entries(moviesObj).map((item) => item[1]);
-      setFavoriteMovies(moviesArr)
+      setFavoriteMovies(moviesArr);
     }
-  }
+  };
+
+  const clearFavoriteMovies = () => {
+    localStorage.removeItem(`favoriteMovies=${loginCtx.token}`)
+    setFavoriteMovies(null);
+  };
 
   const contextValue = {
     favoritesMovies,
     selectedMovieToShow,
     setSelectedMovieHandler: setMovieToDisplay,
     setFavoriteMoviesHandler: setFavoriteMoviesState,
-    setFavoriteMoviesFromLocalStorage
+    setFavoriteMoviesFromLocalStorage,
+    clearFavoriteMovies,
   };
 
-  useEffect(() => {    
+  useEffect(() => {
     if (favoritesMovies) {
       const moviesJsonAsString = JSON.stringify({ ...favoritesMovies });
-      localStorage.setItem("favoriteMovies", moviesJsonAsString);
+      localStorage.setItem(
+        `favoriteMovies=${loginCtx.token}`,
+        moviesJsonAsString
+      );
       return;
-    }    
-  }, [favoritesMovies]);
+    }
+  }, [loginCtx.token, favoritesMovies]);
 
   return (
     <moviesContext.Provider value={contextValue}>

@@ -1,6 +1,10 @@
-.divLink {
-  text-align: center;
+.divConteiner {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 1rem 0;
 }
+
 .link {
   color: white;
   font-size: var(--MobileFontSize);
@@ -19,7 +23,14 @@
 }
 .title {
   text-align: center;
-  color: antiquewhite;
+  text-decoration: underline;
+  color: gold;
   font-size: var(--MobileFontSize);
   margin-bottom: 0.5rem;
+}
+
+.li {
+  padding:0.1rem  0.5rem;
+  border: 1px solid gold;
+  margin-bottom: 1.5rem;
 }
