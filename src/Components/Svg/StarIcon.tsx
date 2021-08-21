@@ -1,7 +1,9 @@
+import styles from './StarIcon.module.css'
+
 const SvgStar: React.FC = () => {
   return (
     <svg
-      width="25px"
+     className={styles.starIcon}
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 122.88 117.1"

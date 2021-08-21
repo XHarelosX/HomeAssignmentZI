@@ -12,12 +12,10 @@ const MovieInfoSection: React.FC = () => {
       {SelectedMovie === null ? (
         <p className={styles.noSelectedMovieMsg}>Please Select Movie.</p>
       ) : (
-        <section>
-          <div className={styles.movieTitle}>
-            <p>{SelectedMovie.title}</p>
-          </div>
+        <section className={styles.section}>
           <div className={styles.informationLayout}>
-            <div>
+            <div  className={styles.divImgAndTitle}>
+              <p className={styles.movieTitle}>{SelectedMovie.title}</p>
               <img
                 className={styles.imgContainer}
                 src={`${process.env.PUBLIC_URL}/Images/StarWarsEpisode${SelectedMovie.episode_id}.jpg`}
@@ -37,10 +35,10 @@ const MovieInfoSection: React.FC = () => {
                 <span className={styles.spanCategory}>Producer: </span>
                 {SelectedMovie.producer}
               </div>
-              <div className={styles.openingText}>
-                {SelectedMovie.opening_crawl}
-              </div>
             </div>
+          </div>
+          <div className={styles.openingText}>
+            <p>{SelectedMovie.opening_crawl}</p>
           </div>
         </section>
       )}

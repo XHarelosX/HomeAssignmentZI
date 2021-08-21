@@ -17,8 +17,15 @@
   padding: 0 0 1.5rem 0;
   width: 80vw;
   border-bottom: 1px solid gray;
+  margin: 0;
 }
 
 li {
   list-style: none;
+}
+
+@media screen and (min-width: 768px) {
+  .divUlContainer p {
+    font-size: calc(var(--MediumFontSize) - 0.2rem);
+  }
 }

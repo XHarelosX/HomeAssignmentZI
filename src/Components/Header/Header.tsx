@@ -8,9 +8,6 @@ interface Props {
 
 const Header: React.FC<Props> = ({ isLoggedIn, logoutBtnHandler }: Props) => {
 
-
-
-
   return (
     <header className={styles.header}>
       <div>Star Wars UI API</div>

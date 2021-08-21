@@ -12,3 +12,10 @@
 .logoutButton {
   height: 40%;
 }
+
+@media screen and (min-width: 768px) {
+  .logoutButton {
+    height: 50%;
+    font-size: calc(var(--MediumFontSize) - 0.5rem);
+  }
+}
