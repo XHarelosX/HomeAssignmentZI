@@ -97,7 +97,7 @@
     width: 40%;
   }
   .openingText {
-    font-size: var(--BigFontSize);
+    font-size: calc(var(--BigFontSize) - 0.25rem);
   }
   .movieDetails {
     font-size: calc(var(--BigFontSize) - 0.45rem);

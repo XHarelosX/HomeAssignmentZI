@@ -25,3 +25,18 @@
 .invalidInput {
   border: 2px solid red;
 }
+
+@media screen and (min-width: 768px) {
+  .charMsg {
+    font-size: calc(var(--BigFontSize) - 0.8rem);
+  }
+  .form {
+    width: 40vw;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .divContainer {
+    font-size: calc(var(--BigFontSize) - 0.5rem);
+  }
+}
