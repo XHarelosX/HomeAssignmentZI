@@ -14,3 +14,15 @@
   margin-top: 4rem;
   font-size: calc(var(--MobileFontSize) + 0.4rem);
 }
+
+@media screen and (min-width: 768px) {
+  .login {
+    font-size: var(--BigFontSize);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .divContainer {
+    font-size: calc(var(--BigFontSize) - 0.5rem);
+  }
+}
