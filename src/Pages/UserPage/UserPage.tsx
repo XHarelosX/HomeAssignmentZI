@@ -32,7 +32,7 @@ const UserPage: React.FC = () => {
   useEffect(() => {
     const username = document.cookie.split("=")[1];
     if (username) {
-      getMoviesRequest({ url: "http://swapi.dev/api/films/" }, movieFound);
+      getMoviesRequest({ url: "https://swapi.dev/api/films/" }, movieFound);
     }
   }, [getMoviesRequest]);
 
