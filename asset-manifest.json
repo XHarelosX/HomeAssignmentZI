@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/HomeAssignmentZI/static/css/main.6842f8f8.chunk.css",
+    "main.js": "/HomeAssignmentZI/static/js/main.888e5dfc.chunk.js",
+    "main.js.map": "/HomeAssignmentZI/static/js/main.888e5dfc.chunk.js.map",
+    "runtime-main.js": "/HomeAssignmentZI/static/js/runtime-main.ac08c26d.js",
+    "runtime-main.js.map": "/HomeAssignmentZI/static/js/runtime-main.ac08c26d.js.map",
+    "static/js/2.acaa5eae.chunk.js": "/HomeAssignmentZI/static/js/2.acaa5eae.chunk.js",
+    "static/js/2.acaa5eae.chunk.js.map": "/HomeAssignmentZI/static/js/2.acaa5eae.chunk.js.map",
+    "static/js/3.9ad6859b.chunk.js": "/HomeAssignmentZI/static/js/3.9ad6859b.chunk.js",
+    "static/js/3.9ad6859b.chunk.js.map": "/HomeAssignmentZI/static/js/3.9ad6859b.chunk.js.map",
+    "index.html": "/HomeAssignmentZI/index.html",
+    "static/css/main.6842f8f8.chunk.css.map": "/HomeAssignmentZI/static/css/main.6842f8f8.chunk.css.map",
+    "static/js/2.acaa5eae.chunk.js.LICENSE.txt": "/HomeAssignmentZI/static/js/2.acaa5eae.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ac08c26d.js",
+    "static/js/2.acaa5eae.chunk.js",
+    "static/css/main.6842f8f8.chunk.css",
+    "static/js/main.888e5dfc.chunk.js"
+  ]
+}
