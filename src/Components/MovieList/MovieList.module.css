@@ -5,6 +5,7 @@
   color: aliceblue;
 }
 .divUlContainer p {
+  margin: 0.2rem 0;
   text-decoration: underline;
   font-size: calc(var(--MobileFontSize) - 0.1rem);
 }

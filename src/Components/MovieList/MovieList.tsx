@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import moviesContext from "../../store/movies-context";
 import MovieItem from "./MovieItem/MovieItem";
 import styles from "./MovieList.module.css";
@@ -11,19 +11,22 @@ const MovieList: React.FC<Props> = ({ movies }) => {
   
   const movieCtx = useContext(moviesContext);
 
-  const selectMovieToDisplayHandler = (id?: any) => {
+  const selectMovieToDisplayHandler = (id: any) => {
       const movieFoundById: any[] = movies.filter((movie) => movie.episode_id === id);
       movieCtx.setSelectedMovieHandler({...movieFoundById[0]})
   };
 
   const addMovieToFavoriteHandler = (id: any) => {
     const movieFoundById: any[] = movies.filter((movie) => movie.episode_id === id);
-    if ( movieCtx.favoritesMovies.includes(movieFoundById[0].title) ) return;
+    
+    if (movieCtx.favoritesMovies) {      
+      if ( movieCtx.favoritesMovies.includes(movieFoundById[0].title) ) return;
+    }
       movieCtx.setFavoriteMoviesHandler(movieFoundById[0])
   };
 
   const displayMovies = () => {
-    const sortedMovies = movies.map((movie) => (
+    const Movies = movies.map((movie) => (
       <MovieItem
         key={movie.episode_id}
         id={movie.episode_id}
@@ -33,11 +36,16 @@ const MovieList: React.FC<Props> = ({ movies }) => {
         {movie.title}
       </MovieItem>
     ));
-    return sortedMovies;
+    return Movies;
   };
-
   const allMoveis = displayMovies();
 
+  
+  useEffect(() => {
+    movieCtx.setFavoriteMoviesFromLocalStorage()  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  
   return (
     <div className={styles.divUlContainer}>
       <p>Click on the movie more information.</p>

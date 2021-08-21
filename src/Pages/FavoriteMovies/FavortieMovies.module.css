@@ -1,0 +1,25 @@
+.divLink {
+  text-align: center;
+}
+.link {
+  color: white;
+  font-size: var(--MobileFontSize);
+}
+.imgContainer {
+  width: auto;
+  height: 450px;
+}
+
+.moviesUl {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0 0 1.5rem 0;
+}
+.title {
+  text-align: center;
+  color: antiquewhite;
+  font-size: var(--MobileFontSize);
+  margin-bottom: 0.5rem;
+}

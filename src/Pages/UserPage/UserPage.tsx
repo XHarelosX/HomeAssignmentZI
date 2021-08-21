@@ -1,16 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useFatchdata from "../../Components/Hooks/use-fetch";
 import MovieInfoSection from "../../Components/MovieList/MovieInfoSection/MovieInfoSection";
 import MovieList from "../../Components/MovieList/MovieList";
-import moviesContext from "../../store/movies-context";
-import styles from './UserPage.module.css'
-
+import styles from "./UserPage.module.css";
 
 const UserPage: React.FC = () => {
-  let history = useHistory();
-
-  const movieCtx = useContext(moviesContext);
 
   const [movies, setMovies] = useState<any[]>([]);
   const { isLoading, error, sendRequest: getMoviesRequest } = useFatchdata();
@@ -33,20 +28,23 @@ const UserPage: React.FC = () => {
   };
 
   const moviesToRender = allMovies();
-  
+
   useEffect(() => {
     const username = document.cookie.split("=")[1];
     if (username) {
       getMoviesRequest({ url: "http://swapi.dev/api/films/" }, movieFound);
-    } else history.replace("/home");
-  }, [history, getMoviesRequest]);
+    }
+  }, [getMoviesRequest]);
 
   return (
     <div>
+      <div className={styles.divLink}>
+        <Link to="/favorites" className={styles.link}>
+          Favorite movies page
+        </Link>
+      </div>
       {moviesToRender}
-      <MovieInfoSection
-        SelectedMovie={movieCtx.selectedMovieToShow}
-      ></MovieInfoSection>
+      <MovieInfoSection />
     </div>
   );
 };

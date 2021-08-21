@@ -3,13 +3,20 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./Pages/HomePage/HomePage";
 import LoginContext from "./store/login-context";
 import { MoviesContextProvider } from "./store/movies-context";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Header from "./Components/Header/Header";
 import UserPage from "./Pages/UserPage/UserPage";
 import FavoriteMovies from "./Pages/FavoriteMovies/FavoriteMovies";
 
 function App() {
   const loginCtx = useContext(LoginContext);
+
+  useEffect(() => {
+    const username = document.cookie.split("=")[1];
+    if (username) {
+      loginCtx.isLoggedIn = true;
+    }
+  });
 
   return (
     <>
@@ -18,18 +25,20 @@ function App() {
         <Route exact path="/home" component={HomePage} />
 
         <Route exact path="/login" component={LoginForm} />
-
-        <Route exact path="/favorites">
+        
+        {loginCtx.isLoggedIn ? (
           <MoviesContextProvider>
-            <FavoriteMovies />
-          </MoviesContextProvider>
-        </Route>
+            <Route exact path="/favorites">
+              <FavoriteMovies />
+            </Route>
 
-        <Route exact path="/userpage">
-          <MoviesContextProvider>
-            <UserPage />
+            <Route exact path="/userpage">
+              <UserPage />
+            </Route>
           </MoviesContextProvider>
-        </Route>
+        ) : (
+          <Redirect to="/home" />
+        )}
 
         <Route path="*">
           <Redirect to="/home" />

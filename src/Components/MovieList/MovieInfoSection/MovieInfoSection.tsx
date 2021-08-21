@@ -1,13 +1,15 @@
 import styles from "./MovieInfoSection.module.css";
+import moviesContext from "../../../store/movies-context";
+import { useContext } from "react";
 
-interface Props {
-  SelectedMovie: any;
-}
+const MovieInfoSection: React.FC = () => {
+  const moviesCtx = useContext(moviesContext);
 
-const MovieInfoSection: React.FC<Props> = ({ SelectedMovie }) => {
+  let SelectedMovie = moviesCtx.selectedMovieToShow;
+
   return (
     <div className={styles.divConteiner}>
-      {!SelectedMovie ? (
+      {SelectedMovie === null ? (
         <p className={styles.noSelectedMovieMsg}>Please Select Movie.</p>
       ) : (
         <section>
@@ -23,11 +25,22 @@ const MovieInfoSection: React.FC<Props> = ({ SelectedMovie }) => {
               />
             </div>
             <div className={styles.movieDetails}>
-              <div><span className={styles.spanCategory}>Release date:</span> {SelectedMovie.release_date}</div>
-              <div><span className={styles.spanCategory}>Director:</span> {SelectedMovie.director}</div>
-              <div><span className={styles.spanCategory}>Producer:</span> {SelectedMovie.producer}</div>
-              <div className={styles.openingText}>{SelectedMovie.opening_crawl}</div>
+              <div>
+                <span className={styles.spanCategory}>Release date: </span>
+                {SelectedMovie.release_date}
               </div>
+              <div>
+                <span className={styles.spanCategory}>Director: </span>
+                {SelectedMovie.director}
+              </div>
+              <div>
+                <span className={styles.spanCategory}>Producer: </span>
+                {SelectedMovie.producer}
+              </div>
+              <div className={styles.openingText}>
+                {SelectedMovie.opening_crawl}
+              </div>
+            </div>
           </div>
         </section>
       )}

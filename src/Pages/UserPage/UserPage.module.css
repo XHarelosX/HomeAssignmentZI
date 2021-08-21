@@ -3,3 +3,11 @@
   text-align: center;
   font-size: var(--MobileFontSize);
 }
+.divLink {
+  margin: 0.5rem 0;
+  text-align: center;
+}
+.link {
+  color: rgb(90, 233, 161);
+  font-size: var(--MobileFontSize);
+}

@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: calc(var(--MobileFontSize) - 0.1rem);
-  margin: 0.25em;
+  margin: 0.4em 0;
   padding: 0 15px;
   text-align: center;
   list-style: none;
